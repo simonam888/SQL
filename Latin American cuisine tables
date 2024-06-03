@@ -5,6 +5,16 @@ CREATE TABLE Dishes (
     Price DECIMAL(10, 2)
 );
 
+INSERT INTO Dishes (DishID, DishName, OriginCountry, Price) VALUES
+(1, 'Ceviche', 'Peru', 10.00),
+(2, 'Rocoto Relleno', 'Peru', 10.00),
+(3, 'Empanadas', 'Argentina', 2.50),
+(4, 'Asado', 'Argentina', 12.00),
+(5, 'Tacos', 'Mexico', 3.00),
+(6, 'Churros', 'Mexico', 2.00),
+(7, 'Pastel de Choclo', 'Chile', 10.00);
+
+
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -12,6 +22,12 @@ CREATE TABLE Customers (
     Email VARCHAR(100),
     Phone VARCHAR(20)
 );
+
+INSERT INTO Customers (CustomerID, FirstName, LastName, Email, Phone) VALUES
+(1, 'Carlos', 'Perro', 'carlos@wiwiwi.com', '1111111111'),
+(2, 'Lucia', 'Gata', 'lucia@wiwiwi.com', '2222222222'),
+(3, 'Maria', 'Pata', 'maria@wiwiwi.com', '3333333333');
+
 
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
@@ -21,6 +37,11 @@ CREATE TABLE Orders (
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
+INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
+(1, 1, '2024-06-01', 35.00),
+(2, 2, '2024-06-02', 15.00);
+
+
 CREATE TABLE OrderDetails (
     OrderDetailID INT PRIMARY KEY,
     OrderID INT,
@@ -29,6 +50,12 @@ CREATE TABLE OrderDetails (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (DishID) REFERENCES Dishes(DishID)
 );
+
+INSERT INTO OrderDetails (OrderDetailID, OrderID, DishID, Quantity) VALUES
+(1, 1, 1, 2),
+(2, 1, 2, 1),
+(3, 2, 3, 2),
+(4, 2, 5, 3);
 
 Dishes
 
@@ -43,12 +70,14 @@ Dishes
 | 7      | Pastel de Choclo | Chile         | 10.00  |
 
 
+
 Customers
 
 | CustomerID | FirstName | LastName |       Email       |    Phone   |
 |------------|-----------|----------|-------------------|------------|
-| 1          | Carlos    | Diaz     | carlos@example.com| 1234567890 |
-| 2          | Lucia     | Martinez | lucia@example.com | 0987654321 |
+| 1          | Carlos    | Perro    | carlos@wiwiwi.com | 1111111111 |
+| 2          | Lucia     | Gata     | lucia@wiwiwi.com  | 2222222222 |
+| 3          | Maria     | Pata     | maria@wiwiwi.com  | 3333333333 |
 
 
 Orders
@@ -67,3 +96,4 @@ OrderDetails
 | 2             | 1       | 2      | 1        |
 | 3             | 2       | 3      | 2        |
 | 4             | 2       | 5      | 3        |
+
