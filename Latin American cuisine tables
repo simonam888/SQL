@@ -34,13 +34,13 @@ Dishes
 
 | DishID |     DishName     | OriginCountry |  Price |
 |--------|------------------|---------------|--------|
-| 1      | Ceviche          | Peru          | 12.99  |
-| 2      | Rocoto Relleno   | Peru          | 10.99  |
-| 3      | Empanadas        | Argentina     | 3.99   |
-| 4      | Asado            | Argentina     | 14.99  |
-| 5      | Tacos            | Mexico        | 2.99   |
-| 6      | Churros          | Mexico        | 1.99   |
-| 7      | Pastel de Choclo | Chile         | 9.99   |
+| 1      | Ceviche          | Peru          | 10.00  |
+| 2      | Rocoto Relleno   | Peru          | 10.00  |
+| 3      | Empanadas        | Argentina     | 2.50   |
+| 4      | Asado            | Argentina     | 12.00  |
+| 5      | Tacos            | Mexico        | 3.00   |
+| 6      | Churros          | Mexico        | 2.00   |
+| 7      | Pastel de Choclo | Chile         | 10.00  |
 
 
 Customers
@@ -55,8 +55,8 @@ Orders
 
 | OrderID | CustomerID |  OrderDate | TotalAmount |
 |---------|------------|------------|-------------|
-| 1       | 1          | 2024-05-20 | 28.97       |
-| 2       | 2          | 2024-05-21 | 12.97       |
+| 1       | 1          | 2024-06-01 | 35.00       |
+| 2       | 2          | 2024-06-02 | 15.00       |
 
 
 OrderDetails
