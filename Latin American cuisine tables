@@ -1,0 +1,69 @@
+CREATE TABLE Dishes (
+    DishID INT PRIMARY KEY,
+    DishName VARCHAR(100),
+    OriginCountry VARCHAR(50),
+    Price DECIMAL(10, 2)
+);
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10, 2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE OrderDetails (
+    OrderDetailID INT PRIMARY KEY,
+    OrderID INT,
+    DishID INT,
+    Quantity INT,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (DishID) REFERENCES Dishes(DishID)
+);
+
+Dishes
+
+| DishID |     DishName     | OriginCountry |  Price |
+|--------|------------------|---------------|--------|
+| 1      | Ceviche          | Peru          | 12.99  |
+| 2      | Rocoto Relleno   | Peru          | 10.99  |
+| 3      | Empanadas        | Argentina     | 3.99   |
+| 4      | Asado            | Argentina     | 14.99  |
+| 5      | Tacos            | Mexico        | 2.99   |
+| 6      | Churros          | Mexico        | 1.99   |
+| 7      | Pastel de Choclo | Chile         | 9.99   |
+
+
+Customers
+
+| CustomerID | FirstName | LastName |       Email       |    Phone   |
+|------------|-----------|----------|-------------------|------------|
+| 1          | Carlos    | Diaz     | carlos@example.com| 1234567890 |
+| 2          | Lucia     | Martinez | lucia@example.com | 0987654321 |
+
+
+Orders
+
+| OrderID | CustomerID |  OrderDate | TotalAmount |
+|---------|------------|------------|-------------|
+| 1       | 1          | 2024-05-20 | 28.97       |
+| 2       | 2          | 2024-05-21 | 12.97       |
+
+
+OrderDetails
+
+| OrderDetailID | OrderID | DishID | Quantity |
+|---------------|---------|--------|----------|
+| 1             | 1       | 1      | 2        |
+| 2             | 1       | 2      | 1        |
+| 3             | 2       | 3      | 2        |
+| 4             | 2       | 5      | 3        |
