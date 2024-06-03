@@ -1,0 +1,39 @@
+1. List of customers Orders with the Dish Details:
+
+SELECT Customers.FirstName, Customers.LastName, Orders.OrderID, Orders.OrderDate, Dishes.DishName, OrderDetails.Quantity
+FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+JOIN OrderDetails ON Orders.OrderID = OrderDetails.OrderID
+JOIN Dishes ON OrderDetails.DishID = Dishes.DishID;
+
+
+2. Total sales per country:
+
+SELECT Dishes.OriginCountry, SUM(Orders.TotalAmount) AS TotalSales
+FROM Orders
+JOIN OrderDetails ON Orders.OrderID = OrderDetails.OrderID
+JOIN Dishes ON OrderDetails.DishID = Dishes.DishID
+GROUP BY Dishes.OriginCountry;
+
+
+3. List of customers with orders more than 15 EUR:
+
+SELECT FirstName, LastName
+FROM Customers
+WHERE CustomerID IN (SELECT CustomerID FROM Orders WHERE TotalAmount > 15);
+
+
+4. List of Customers that have more than one unique dish ordered:
+
+SELECT FirstName, LastName
+FROM Customers
+WHERE CustomerID IN (
+    SELECT CustomerID
+    FROM Orders
+    JOIN OrderDetails ON Orders.OrderID = OrderDetails.OrderID
+    GROUP BY CustomerID
+    HAVING COUNT(DISTINCT DishID) > 1
+);
+
+
+
